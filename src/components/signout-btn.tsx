@@ -1,9 +1,8 @@
 import { Button } from "./ui/button";
-import { createClient } from "@/lib/supabase/client";
+import { supabase } from "@/lib/supabase/client";
 
-export function SignoutButton() {
+export default function SignoutButton() {
   const handleSignOut = async () => {
-    const supabase = createClient();
     const { error } = await supabase.auth.signOut({ scope: "local" });
 
     if (error) console.error(error);
@@ -14,6 +13,8 @@ export function SignoutButton() {
       onClick={() => {
         handleSignOut();
       }}
-    />
+    >
+      Sign Out
+    </Button>
   );
 }
